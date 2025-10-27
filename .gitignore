@@ -1,0 +1,25 @@
+# Byte-compiled and optimized files
+*.pyc
+__pycache__/
+
+# Virtual environment folder
+# Never commit your libraries
+venv/
+.venv/
+
+# Environment variables
+# IMPORTANT: This file contains your secret API keys
+.env
+
+# Build and distribution artifacts
+build/
+dist/
+*.egg-info/
+
+# IDE and editor specific folders
+.vscode/
+.idea/
+
+# Test artifacts
+.pytest_cache/
+htmlcov/
