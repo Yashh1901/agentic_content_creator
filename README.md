@@ -31,7 +31,7 @@ Tavily AI: For the intelligent web search API.
 ### 1. Set Up Your Environment
 
 #### Clone the repository
-git clone [https://github.com/your-username/agentic-content-creator.git](https://github.com/your-username/agentic-content-creator.git)
+git clone [https://github.com/Yashh1901/agentic-content-creator.git](https://github.com/Yashh1901/agentic-content-creator.git)
 cd agentic-content-creator
 
 #### Create and activate a virtual environment
