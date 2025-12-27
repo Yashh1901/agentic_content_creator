@@ -1,30 +1,31 @@
 import json
 from langgraph.graph import StateGraph, END
 from .state import AgentState
+import time
 
 from agents.planner import get_planner_agent_runnable
 from agents.search import run_search_agent
 from agents.writer import get_writer_agent_runnable
 from agents.reviewer import get_reviewer_agent_runnable
 
-MAX_REVISIONS = 3
+MAX_REVISIONS = 1
 # ____Node Definations_____
 
 def planner_node(state: AgentState) -> dict:
-
+    time.sleep(3)
     print("--- 📝 EXECUTING PLANNER ---")
     planner = get_planner_agent_runnable()
     outline = planner.invoke({"topic": state["topic"]})
     return {"outline": outline, "revision_number": 0}
 
 def search_node(state: AgentState) -> dict:
-
+    time.sleep(3)
     print("--- 🔎 EXECUTING RESEARCHER ---")
     research_data = run_search_agent(state["topic"], state["outline"])
     return {"research_data": research_data}
 
 def writer_node(state: AgentState) -> dict:
-
+    time.sleep(3)
     print("--- ✍️ EXECUTING WRITER ---")
     writer = get_writer_agent_runnable()
     formatted_research = json.dumps(state["research_data"], indent=2)
@@ -34,13 +35,14 @@ def writer_node(state: AgentState) -> dict:
         "research_data": formatted_research,
         "feedback": state.get("feedback")   # Pass if exist
     })
+    print(f"--- Draft:--- \n{draft}")
     revision_number = state.get("revision_number", 0) + 1
     return {"draft": draft, "revision_number": revision_number}
 
 # In graph/builder.py
 
 def reviewer_node(state: AgentState) -> dict:
-
+    time.sleep(3)
     print("--- 🧐 EXECUTING REVIEWER ---")
     reviewer = get_reviewer_agent_runnable()
     review = reviewer.invoke({

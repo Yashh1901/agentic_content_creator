@@ -2,6 +2,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
 
+
 # Prompt template for the planner
 PLANNER_PROMPT = """
 You are an expert content strategist and senior writer.

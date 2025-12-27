@@ -2,10 +2,11 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import JsonOutputParser
 from tools.search_tool import search_tool
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Prompt template for the search agent
 SEARCH_PROMPT = """
-You are an expert researcher. Your task is to generate a list of 3-5 specific, targeted search queries to gather information for a blog post on the given topic and outline.
+You are an expert researcher. Your task is to generate a list of 2-3 specific, targeted search queries to gather information for a blog post on the given topic and outline.
 Only generate queries that are directly relevant to the provided outline sections.
 
 Return the queries as a JSON object with a single key "queries" that contains a list of strings.
@@ -22,9 +23,10 @@ def get_search_agent_runnable():
     # Returns the runnable for the search agent.
 
     prompt = ChatPromptTemplate.from_template(SEARCH_PROMPT)
-    llm = ChatGroq(model="llama-3.3-70b-versatile")
+    # llm = ChatGroq(model="llama-3.3-70b-versatile")
+    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
 
-    # Json parser to convert the LLM's output into Python List
+    # Json parser to convert the LLM's output into Pythong List
     parser = JsonOutputParser()
 
     # Query generate chain using LCEL (Langchain Execution Language)
